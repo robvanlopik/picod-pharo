@@ -61,6 +61,15 @@ PicodDriver >> digitalWrite: aGPIO value: oneOrZero [
 	
 ]
 
+{ #category : #controlling }
+PicodDriver >> disconnect [ 
+	self isConnected ifTrue: [ 
+		self stopListener.
+		port close.
+		port := nil ]
+	
+]
+
 { #category : #crc }
 PicodDriver >> hqxCRCOver: aByteArray [ 
  "calculate the XModem checksum
@@ -88,6 +97,7 @@ PicodDriver >> reset [
 	"Resets the Pico (frees GPIO, close I2C, SPI, serial, PWM)"
 	"RESET_PICO = 96"
 	self sendCommand: 96 flags: 0 data: #() asByteArray
+	
 ]
 
 { #category : #utilities }
@@ -109,5 +119,10 @@ PicodDriver >> setup [
 
 { #category : #initialization }
 PicodDriver >> startListener [
+
+]
+
+{ #category : #'as yet unclassified' }
+PicodDriver >> stopListener [
 
 ]
