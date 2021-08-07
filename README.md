@@ -53,7 +53,7 @@ myPico servoPWMClose: 13. "Free gpio 13 for other uses"
 
 ```voltage := myPico analogRead: 3 "read analog channel 3"```
 
-reads channel 3 adc, which happens to be connected to a voltage diver between VSYS and ground;
+reads channel 3 adc, which happens to be connected to a voltage divider between VSYS and ground;
 
 To free the gpio pin for other uses, you have to execute
 
