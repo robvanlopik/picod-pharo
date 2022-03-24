@@ -154,7 +154,7 @@ PicodDriver >> digitalReadAll [
 	^(result dataBytes unsignedLongAt: 1 bigEndian: true)
 ]
 
-{ #category : #utilities }
+{ #category : #'digital pins' }
 PicodDriver >> digitalWrite: aGPIO value: oneOrZero [
 	"write a zero or one to a GPIO pin 0-29"
 	"CMD_GPIO_WRITE = 14 "
@@ -179,6 +179,38 @@ PicodDriver >> disconnect [
 		port close.
 		port := nil ]
 	
+]
+
+{ #category : #'as yet unclassified' }
+PicodDriver >> getFunctions [
+
+	"return a ByteArray with the current function of all pins. 
+	Each element can have a 4 bit value
+	0000 - FUNC_XIP
+	0001 - FUNC_SPI
+	0010 - FUNC_UART
+	0011 - FUNC_I2C
+	0100 - FUNC_PWM
+	0101 - FUNC_SIOT
+	0101 - FUNC_GPIO (alias for SIO)
+	0110 - FUNC_PIO0
+	0111 - FUNC_PIO1
+	1000 - FUNC_GPCK
+	1001 - FUNC_USB
+	1111 - FUNC_NULL
+	command FUNCTION_GET = 26
+	"
+
+	| result series |
+	result := self sendCommand: 26 flags: 16r40 data: #(  ) asByteArray.
+	series := result dataBytes
+		          groupsOf: 4
+		          atATimeCollect: [ :block | block reverse ].
+	result := ByteArray new: 32.
+	series flattened withIndexDo: [ :byte :i | 
+		result at: (2 * i - 1) put: (byte bitAnd: 16r0F).
+		result at: (2 * i) put: (byte bitAnd: 16rF0) >> 4 ].
+	^ result
 ]
 
 { #category : #crc }
