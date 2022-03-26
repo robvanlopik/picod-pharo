@@ -577,6 +577,35 @@ PicodDriver >> setDebounceOnPin: aPin duration: millis [
 ]
 
 { #category : #'digital pins' }
+PicodDriver >> setGpioInput: aPin [
+
+	"set one gpio to input
+	CMD_GPIO_SET_IN+OUT = 12"
+
+	| pinMask dataBytes |
+	pinMask := 1 << aPin.
+	dataBytes := ByteArray new: 8 withAll: 0. "preset input"
+	dataBytes unsignedLongAt: 1 put: pinMask bigEndian: true.
+	self sendCommand: 12 flags: 0 data: dataBytes
+]
+
+{ #category : #'digital pins' }
+PicodDriver >> setGpioOutput: aPin value: aValue [
+
+	"set one gpios to output with preset aValue
+	CMD_GPIO_SET_IN+OUT = 12"
+
+	| pinMask dataBytes valueMask |
+	pinMask := 1 << aPin.
+	valueMask := 0.
+	(aValue = 1) ifTrue: [ valueMask := 1 << aPin ].
+	dataBytes := ByteArray new: 12 withAll: 1. "preset output"
+	dataBytes unsignedLongAt: 1 put: pinMask bigEndian: true.
+	dataBytes unsignedLongAt: 9 put: valueMask bigEndian: true.
+	self sendCommand: 12 flags: 0 data: dataBytes
+]
+
+{ #category : #'digital pins' }
 PicodDriver >> setGpiosInput: aPinList [
 	"set the gpios listed to inputs
 	CMD_GPIO_SET_IN+OUT = 12"

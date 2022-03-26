@@ -54,6 +54,12 @@ PicodI2CConnection >> picodDriver: anObject [
 	picodDriver := anObject
 ]
 
+{ #category : #accessing }
+PicodI2CConnection >> read8BitsAt: anInteger [
+
+	^ self readByteAt: anInteger
+]
+
 { #category : #reading }
 PicodI2CConnection >> readByteAt: aRegister [
 	picodDriver i2cWrite: channelNr  address: i2cAddress 
@@ -81,6 +87,11 @@ PicodI2CConnection >> readWordBigAndianAt: aRegister [
 	  data: aRegister asByteArray  noStop: true timeOut: 0.1 wait: true.
 	^(picodDriver i2cRead: channelNr address: i2cAddress count: 2 ) 
 		unsignedShortAt: 1 bigEndian: true
+]
+
+{ #category : #accessing }
+PicodI2CConnection >> write8BitsAt: anInteger data: anInteger2 [ 
+	self writeByteAt: anInteger data: anInteger2
 ]
 
 { #category : #writing }
