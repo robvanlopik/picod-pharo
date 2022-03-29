@@ -109,7 +109,7 @@ To subscribe to announcements we have for example:
 
 ### Notes
 
-This driver was developed and tested on a Raspberry Pi 4. I also confirmed it runs an a 64-bits Linux box. It does *not* work on Windows because Pharo SerialPort can not communicate with the RP2040 (Pico) although Windows shows its corresponding COM port. I am trying to investigate. It seems specific to both the SerialPlugin and the RP2040 USB implementation that is based on TinyUSB. But Python and PuTTY communicate OK with the RP2040. 
+This driver needs SerialPort to communicate with the Pico. Over more than two years ago the VM does not come with the Serial plugin, so in pharo 9 and 10 this driver did not work. Now there is an FFI-based implementation by Pable Tesone (https://github.com/tesonep/SerialPort). Here we use my fork of this repo that containss a little tweak (DTR enable) to make it work for the combination of Pico and Windows.
 
 Load with:
 ```
