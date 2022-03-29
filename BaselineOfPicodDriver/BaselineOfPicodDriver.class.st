@@ -19,5 +19,5 @@ BaselineOfPicodDriver >> declareSerialPortOn: spec [
 
 	spec
 		baseline: 'SerialPort'
-		with: [ spec repository: 'github://robvanlopik/SerialPort:main' ]
+		with: [ spec repository: 'github://robvanlopik/SerialPort/src:main' ]
 ]
