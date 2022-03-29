@@ -17,7 +17,7 @@ BaselineOfPicodDriver >> baseline: spec [
 { #category : #'external projects' }
 BaselineOfPicodDriver >> declareSerialPortOn: spec [
 
-	spec baseline: 'SerialPort' with: [ 
-		spec repository:
-			'github://robvanlopik/picod-pharo:main' ]
+	spec
+		baseline: 'SerialPort'
+		with: [ spec repository: 'github://robvanlopik/SerialPort:main' ]
 ]
