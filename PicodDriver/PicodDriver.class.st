@@ -79,6 +79,19 @@ PicodDriver >> analogRead: channel wait: bool [
 ]
 
 { #category : #'digital pins' }
+PicodDriver >> closeGpio: aPin [
+
+	"close a single GPIO
+	CMD_GPIO_CLOSE = 11"
+
+	| mask dataBytes |
+	mask := 1 << (aPin id).
+	dataBytes := ByteArray new: 4.
+	dataBytes unsignedLongAt: 1 put: mask bigEndian: true.
+	self sendCommand: 11 flags: 0 data: dataBytes
+]
+
+{ #category : #'digital pins' }
 PicodDriver >> closeGpios: aGpioList [
 	"close a list of GPIO's
 	CMD_GPIO_CLOSE = 11"

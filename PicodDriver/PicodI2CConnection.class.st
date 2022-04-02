@@ -55,6 +55,14 @@ PicodI2CConnection >> picodDriver: anObject [
 ]
 
 { #category : #accessing }
+PicodI2CConnection >> read8BitsArray: blockSize startingAt: reg [
+
+	"only used for compatibility with wiringPi"
+
+	^ self readDataBlock: blockSize at: reg
+]
+
+{ #category : #accessing }
 PicodI2CConnection >> read8BitsAt: anInteger [
 
 	^ self readByteAt: anInteger
@@ -68,10 +76,17 @@ PicodI2CConnection >> readByteAt: aRegister [
 ]
 
 { #category : #reading }
-PicodI2CConnection >> readDataBlock: count At: aRegister [
-	picodDriver i2cWrite: channelNr  address: i2cAddress 
-	  data: aRegister asByteArray  noStop: true timeOut: 0.1 wait: true.
-	^(picodDriver i2cRead: channelNr address: i2cAddress count: count ) dataBytes
+PicodI2CConnection >> readDataBlock: count at: aRegister [
+
+	picodDriver
+		i2cWrite: channelNr
+		address: i2cAddress
+		data: aRegister asByteArray
+		noStop: true
+		timeOut: 0.1
+		wait: true.
+	^ (picodDriver i2cRead: channelNr address: i2cAddress count: count)
+	
 ]
 
 { #category : #reading }
