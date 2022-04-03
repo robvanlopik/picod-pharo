@@ -109,7 +109,7 @@ To subscribe to announcements we have for example:
 
 ### Notes
 
-This driver needs SerialPort to communicate with the Pico. Over more than two years ago the VM does not come with the Serial plugin, so in pharo 9 and 10 this driver did not work. Now there is an FFI-based implementation by Pable Tesone (https://github.com/tesonep/SerialPort). Here we use my fork of this repo that containss a little tweak (DTR enable) to make it work for the combination of Pico and Windows.
+This driver needs SerialPort to communicate with the Pico. Over more than two years ago the VM does not come with the Serial plugin, so in pharo 9 and 10 this driver did not work. Now there is an FFI-based implementation by Pablo Tesone (https://github.com/tesonep/SerialPort). Here we use my fork of this repo that containss a small tweak (DTR enable) to make it work for the combination of Pico and Windows.
 
 Load with:
 ```
