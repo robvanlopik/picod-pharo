@@ -61,7 +61,7 @@ To free the gpio pin for other uses, you have to execute
 
 #### I2C
 
-The RP2040 has two I2C channels, 0 and 1. First a channel must be opened and associated the the gpio's to be used as *sda* and *scl*:
+The RP2040 has two I2C channels, 0 and 1. First a channel must be opened and associated with the the gpio's to be used as *sda* and *scl*:
 
 ```myPico i2cOpenChannel: channel sda: sdapin scl: sclPin baudRate: aNumber```
 
@@ -109,7 +109,7 @@ To subscribe to announcements we have for example:
 
 ### Notes
 
-This driver needs SerialPort to communicate with the Pico. Over more than two years ago the VM does not come with the Serial plugin, so in pharo 9 and 10 this driver did not work. Now there is an FFI-based implementation by Pable Tesone (https://github.com/tesonep/SerialPort). Here we use my fork of this repo that containss a little tweak (DTR enable) to make it work for the combination of Pico and Windows.
+This driver needs SerialPort to communicate with the Pico. Since over more than two years ago the VM does not come with the Serial plugin, so in pharo 9 and 10 this driver did not work. Now there is an FFI-based implementation by Pablo Tesone (https://github.com/tesonep/SerialPort). Here we use my fork of this repo that contains a small tweak (DTR enable) to make it work for the combination of Pico and Windows.
 
 Load with:
 ```
