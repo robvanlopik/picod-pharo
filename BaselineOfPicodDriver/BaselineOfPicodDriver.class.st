@@ -11,7 +11,7 @@ BaselineOfPicodDriver >> baseline: spec [
 	spec for: #common do: [ 
 		self declareSerialPortOn: spec.
 
-		spec package: 'PicodDriver' ]
+		spec package: 'PicodDriver' with: [  spec requires: #('SerialPort') ] ]
 ]
 
 { #category : #'external projects' }
