@@ -50,7 +50,7 @@ PicodListener >> announcer: anObject [
 	announcer := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 PicodListener >> findHeader [
  "looks for 16rFF followed by length and CRC
 	if found within buffer it checks the CRC of the header
@@ -82,7 +82,7 @@ PicodListener >> initialize [
 		resultQueue := SharedQueue new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 PicodListener >> listen [
 	"the main loop to listen for answers and events from the Pico"
 	| data processingMessage messageLength crc|
@@ -124,7 +124,7 @@ PicodListener >> listen [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 PicodListener >> onPort: aSerialPort [
 	port := aSerialPort
 ]
@@ -139,13 +139,13 @@ PicodListener >> owner: anObject [
 	owner := anObject 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 PicodListener >> processAsync [
 	"MSG_ASYNC was detected, meaninga change in uart, i2c, spi  
 	this has been requested by #activateEvent:mode:count:"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 PicodListener >> processDirectReply [
 	"the result will me put into a queue, resultQueue, te be retrieved
 	 by the initiating request. Note that there can be more queues to differentiate the originating threads, but this is not implemented. yet."
@@ -155,7 +155,7 @@ PicodListener >> processDirectReply [
 	resultQueue nextPut: (buffer from: 3 to: length).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 PicodListener >> processLevelChanges [
 	"a level change was detected, or a watchdog timeout
 	the buffer can contain more 8-byte reports as indicated by 
@@ -168,7 +168,7 @@ PicodListener >> processLevelChanges [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 PicodListener >> processLevelReport: aReportBuffer [
 	"we have 8 bytes describing levelchanges or watchdog timeout"
 	| newLevels tick selectedPins |
@@ -199,7 +199,7 @@ PicodListener >> processLevelReport: aReportBuffer [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #processing }
 PicodListener >> processMessage [ 	
 	"at this point we have a correct message that starts in the buffer
 	the length is in the first two bytes

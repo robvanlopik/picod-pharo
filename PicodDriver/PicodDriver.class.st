@@ -9,8 +9,9 @@ I also support higher level protocols like i2c, uart and spi.
 Listening for answer is done by a PiocListener, that i started. I can wait for an anser, or simply continue, in which case the PicodListener will generate an announcement.
 
 I am started with 
-```pico := PicodDriver new connectOnPort: 'COM3' (baudrate: 230400)
-
+``` Smalltalk
+pico := PicodDriver new connectOnPort: 'COM3' (baudrate: 230400)
+```
 
 For the Collaborators Part: State my main collaborators and one line about how I interact with them. 
 
@@ -194,7 +195,7 @@ PicodDriver >> disconnect [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #utilities }
 PicodDriver >> getFunctions [
 
 	"return a ByteArray with the current function of all pins. 
@@ -387,7 +388,7 @@ PicodDriver >> isConnected [
 	^port notNil
 ]
 
-{ #category : #misc }
+{ #category : #utilities }
 PicodDriver >> millisFromT1: tick1 toT2: tick2 [
 	"uniform method to get the time in milliseconds between two timestamps
 	take care of clock rollover"
@@ -692,7 +693,7 @@ PicodDriver >> statusCheck: aBoolean [
 	statusCheck := aBoolean
 ]
 
-{ #category : #utilities }
+{ #category : #'event processing' }
 PicodDriver >> stopListener [
 	listener stop.
 

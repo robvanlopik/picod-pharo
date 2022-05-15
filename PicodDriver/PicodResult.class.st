@@ -20,7 +20,7 @@ Class {
 	#category : #PicodDriver
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PicodResult >> checkStatus [
 	"if status not OK, print status text to console"
 		status = 0 ifTrue: [ ^nil ].
