@@ -25,8 +25,8 @@ For testing you can do:
 #### Simple I/O operations.
 
 ##### Modes
-Unlike some other drivers (e.g. Firmata) PicodDriver does not have the concepot of *mode*. You must however free a pin (or more pins) from its prsent function before you can perform another type of operation:
-- leave digital I/O mode with: #clodeGpio:
+Unlike some other drivers (e.g. Firmata) PicodDriver does not have the concept of *mode*. You must however free a pin (or more pins) from its present function before you can perform another type of operation:
+- leave digital I/O mode with: #closeGpio:
 - leave pwm/servo mode with: #servoPWMClose:
 - leave analog input mode with: #analogClose:
 
