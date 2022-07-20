@@ -24,6 +24,12 @@ For testing you can do:
 
 #### Simple I/O operations.
 
+##### Modes
+Unlike some other drivers (e.g. Firmata) PicodDriver does not have the concept of *mode*. You must however free a pin (or more pins) from its present function before you can perform another type of operation:
+- leave digital I/O mode with: #closeGpio:
+- leave pwm/servo mode with: #servoPWMClose:
+- leave analog input mode with: #analogClose:
+
 ##### Digital I/O
 
 Some digital I/O operations are specified for a number of pins at once. Internally the pins are represented by single bits in a 64-bit word, but here we use arrays of gpio numbers. So we have
@@ -35,7 +41,7 @@ level := myPico digitalRead: 2.
 myPico closeGpios: #(0 2). "frees pins 0 and 2 for other uses"
 ```
 
-Pull up or down can beset for pins. We have four methods that operate on collections of pins: ```#pullsNone: #pullsUp: #pullsDown and #pullsBoth: ```
+Pull up or down can be set for pins. We have four methods that operate on collections of pins: ```#pullsNone: #pullsUp: #pullsDown and #pullsBoth: ```
 
 ```#pullForPin: ``` returns the pull value for an individual pin. Before you can change the pull resistors you must first open the pins you want to modify with```#openGpios:```.
 
