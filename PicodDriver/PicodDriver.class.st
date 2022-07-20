@@ -86,7 +86,7 @@ PicodDriver >> closeGpio: aPin [
 	CMD_GPIO_CLOSE = 11"
 
 	| mask dataBytes |
-	mask := 1 << (aPin id).
+	mask := 1 << aPin.
 	dataBytes := ByteArray new: 4.
 	dataBytes unsignedLongAt: 1 put: mask bigEndian: true.
 	self sendCommand: 11 flags: 0 data: dataBytes
