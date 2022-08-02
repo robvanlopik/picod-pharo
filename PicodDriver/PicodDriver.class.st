@@ -699,6 +699,17 @@ PicodDriver >> stopListener [
 
 ]
 
+{ #category : #utilities }
+PicodDriver >> ticks [
+	"return tticks of internal clock; rollover after 71.6 minutes"
+	"command PD_TICK = 94"
+	| result |
+	result := self sendCommand: 94 flags: 16r40 data: #() asByteArray.
+	^(result dataBytes unsignedLongAt: 1 bigEndian: true)
+
+	
+]
+
 { #category : #'pwm-servo' }
 PicodDriver >> txRaw: aPin mode: aCode clockDiv: aByte steps: nrOfSteps high: aNumber [ 
 	"generic call, used by servoOnPin: and pwmOnPin: "
