@@ -45,7 +45,7 @@ PicodI2CChannel >> id: anObject [
 { #category : #initialization }
 PicodI2CChannel >> initialize [
 		super initialize.
-		i2cConnections := Set new.
+		i2cConnections := Set new
 ]
 
 { #category : #removing }
